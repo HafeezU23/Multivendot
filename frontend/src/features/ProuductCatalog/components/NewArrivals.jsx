@@ -1,27 +1,26 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectAllProducts } from '../../../redux/productSlice';
 import Product from './Product';
-
-// Dummy data array for products that will be replaced later
-const DUMMY_PRODUCTS = Array.from({ length: 45 }, (_, i) => ({
-  id: i + 1,
-  name: i % 4 === 0 ? "T-shirt with Tape Details" : 
-        i % 4 === 1 ? "Skinny Fit Jeans" :
-        i % 4 === 2 ? "Checkered Shirt" : "Sleeve Striped T-shirt",
-  rating: [4.5, 3.5, 4.5, 4.5][i % 4],
-  price: [120, 240, 180, 130][i % 4],
-  originalPrice: [null, 260, null, 160][i % 4],
-  discount: [null, 20, null, 30][i % 4],
-  imageUrl: "" 
-}));
 
 const NewArrivals = () => {
   const [visibleCount, setVisibleCount] = useState(20);
+  
+  const allProducts = useSelector(selectAllProducts);
 
   const handleShowMore = () => {
     setVisibleCount(prev => prev + 20);
   };
 
-  const displayedProducts = DUMMY_PRODUCTS.slice(0, visibleCount);
+  // Map the redux data to match the format expected by the Product component
+  const displayedProducts = allProducts.slice(0, visibleCount).map(p => ({
+    id: p.id,
+    name: p.title,
+    rating: p.rating,
+    price: p.price,
+    imageUrl: p.images?.[0] || "",
+   
+  }));
 
   return (
     <section className="py-12 md:py-16 font-sans">
@@ -37,13 +36,13 @@ const NewArrivals = () => {
           ))}
         </div>
         
-        {visibleCount < DUMMY_PRODUCTS.length && (
+        {visibleCount < allProducts.length && (
           <div className="flex justify-center mt-10 md:mt-14">
             <button 
               onClick={handleShowMore}
               className="border border-gray-200 text-black font-medium text-sm md:text-base rounded-full py-3 md:py-4 px-16 md:px-20 hover:bg-gray-50 transition-colors"
             >
-              View All
+              View More
             </button>
           </div>
         )}
