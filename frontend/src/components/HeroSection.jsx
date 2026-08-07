@@ -89,7 +89,7 @@ const HeroSection = () => {
   }
 
   return (
-    <section className="min-w-screen bg-[#F2F0F1] font-sans relative overflow-x-clip">
+    <section className="w-full bg-[#F2F0F1] font-sans relative overflow-x-clip">
       <style>{`
         @keyframes marquee {
           0% { transform: translateX(0%); }
@@ -107,7 +107,7 @@ const HeroSection = () => {
 
       {/* Main Hero Slider Container */}
       <div 
-        className="max-w-full mx-20 px-4 sm:px-6 lg:px-8 py-10 sm:py-14 md:py-16 relative"
+        className="max-w-full mx-4 md:mx-10 lg:mx-20 px-4 sm:px-6 lg:px-8 py-10 sm:py-14 md:py-16 relative"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >

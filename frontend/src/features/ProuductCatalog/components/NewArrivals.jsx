@@ -20,7 +20,7 @@ const NewArrivals = () => {
   }));
 
   return (
-    <section className="py-12 md:py-16 font-sans mx-20">
+    <section className="py-12 md:py-16 font-sans mx-4 md:mx-10 lg:mx-20">
       <div className="max-w-full">
         <h2 className="text-[32px] md:text-[48px] font-black text-center uppercase mb-8 md:mb-14 tracking-wider text-black">
           New Arrivals

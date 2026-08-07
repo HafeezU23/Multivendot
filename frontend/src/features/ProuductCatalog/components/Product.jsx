@@ -28,10 +28,10 @@ const Product = ({ product }) => {
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) 
     : 0;
   return (
-    <div className="flex flex-col cursor-pointer bg-white rounded-2xl overflow-hidden border border-black hover:shadow-[4px_4px_0px_rgba(0,0,0,1)] transition-all duration-300">
+    <div className="flex flex-col cursor-pointer bg-white rounded-2xl overflow-hidden border border-black transition-all duration-300">
       
       {/* Top Image Section */}
-      <div className="relative aspect-square w-full border-b border-black overflow-hidden bg-gray-50 group-hover:bg-gray-100 transition-colors duration-300">
+      <div className="relative aspect-4/3 sm:aspect-5/4 w-full border-b border-black overflow-hidden bg-gray-50 group-hover:bg-gray-100 transition-colors duration-300">
         {/* Product Image */}
         {product.imageUrl ? (
           <img 
@@ -45,7 +45,7 @@ const Product = ({ product }) => {
       </div>
       
       {/* Bottom Content Section */}
-      <div className="p-4 md:p-5 flex flex-col flex-1">
+      <div className="p-3 sm:p-4 md:p-5 flex flex-col flex-1">
         {/* Category & Brand */}
         {(product.category || product.brand) && (
           <p className="text-gray-500 text-[10px] md:text-xs font-bold uppercase tracking-wider mb-2">
@@ -71,8 +71,8 @@ const Product = ({ product }) => {
         {/* Price and Cart Row */}
         <div className="flex items-end justify-between mb-4">
           <div className="flex flex-col">
-            <div className="flex items-baseline space-x-2">
-              <span className="text-2xl md:text-3xl font-black text-black">${product.price?.toFixed(2) || product.price}</span>
+            <div className="flex items-baseline space-x-1.5 sm:space-x-2">
+              <span className="text-xl sm:text-2xl md:text-3xl font-black text-black">${product.price?.toFixed(2) || product.price}</span>
               {product.originalPrice && (
                 <span className="text-sm font-bold text-gray-400 line-through">
                   ${product.originalPrice?.toFixed(2) || product.originalPrice}
@@ -84,14 +84,6 @@ const Product = ({ product }) => {
           </div>
 
   
-        </div>
-        
-        {/* Status */}
-        <div className="flex items-center mt-auto pt-1">
-          <div className={`w-2 h-2 rounded-full mr-2 ${product.stock > 0 ? 'bg-black' : 'bg-red-500'}`}></div>
-          <span className="text-gray-600 font-bold text-xs">
-            {product.stock > 0 ? `In stock (${product.stock}) · Free delivery by tomorrow` : 'Out of stock'}
-          </span>
         </div>
         
       </div>
