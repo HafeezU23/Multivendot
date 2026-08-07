@@ -89,8 +89,7 @@ const HeroSection = () => {
   }
 
   return (
-    <section className="w-full bg-[#F2F0F1] font-sans relative overflow-x-clip">
-      {/* Embedded CSS for Infinite Smooth Marquee */}
+    <section className="min-w-screen bg-[#F2F0F1] font-sans relative overflow-x-clip">
       <style>{`
         @keyframes marquee {
           0% { transform: translateX(0%); }
@@ -108,7 +107,7 @@ const HeroSection = () => {
 
       {/* Main Hero Slider Container */}
       <div 
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 md:py-16 relative"
+        className="max-w-full mx-20 px-4 sm:px-6 lg:px-8 py-10 sm:py-14 md:py-16 relative"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
@@ -126,7 +125,7 @@ const HeroSection = () => {
                 }`}
               >
                 {/* Left Text Content */}
-                <div className="lg:col-span-7 flex flex-col justify-center text-center lg:text-left">
+                <div className="lg:col-span-7 lg:mx-10 flex flex-col justify-center text-center lg:text-left">
                   {/* Category Badge */}
                   <div className="inline-flex items-center justify-center lg:justify-start mb-3">
                     <span className="bg-black/5 text-black text-xs sm:text-sm font-semibold px-3.5 py-1.5 rounded-full border border-black/10 uppercase tracking-wider">
@@ -135,7 +134,7 @@ const HeroSection = () => {
                   </div>
 
                   {/* Main Title */}
-                  <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-black uppercase tracking-tight leading-[1.1] text-black mb-4 sm:mb-6 max-w-2xl mx-auto lg:mx-0">
+                  <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-black uppercase tracking-tight leading-[1.1] text-black mb-4 sm:mb-6 max-w-3xl mx-auto lg:mx-0">
                     {slide.title}
                   </h1>
 
@@ -167,17 +166,10 @@ const HeroSection = () => {
                 </div>
 
                 {/* Right Image Container */}
-                <div className="lg:col-span-5 relative flex justify-center items-center">
-                  {/* Decorative Stars */}
-                  <div className="absolute top-2 right-4 text-black opacity-80 animate-pulse text-2xl sm:text-4xl pointer-events-none">
-                    ✦
-                  </div>
-                  <div className="absolute bottom-6 left-4 text-black opacity-80 animate-pulse text-xl sm:text-3xl pointer-events-none">
-                    ✦
-                  </div>
+                <div className="lg:col-span-5 relative flex justify-center lg:justify-end items-center">
 
                   {/* Product Image Box */}
-                  <div className="relative w-full max-w-[340px] sm:max-w-[420px] lg:max-w-[440px] aspect-[4/3] sm:aspect-[4/3.5] rounded-3xl overflow-hidden shadow-2xl bg-white/60 p-2 sm:p-3 border border-white/80 backdrop-blur-xs">
+                  <div className="relative lg:me-10 w-full max-w-[340px] sm:max-w-[420px] lg:max-w-[600px] aspect-[4/3] sm:aspect-[4/3.5] rounded-3xl overflow-hidden shadow-2xl bg-white/60 p-2 sm:p-3 border border-white/80 backdrop-blur-xs">
                     <img
                       src={slide.image}
                       alt={slide.title}

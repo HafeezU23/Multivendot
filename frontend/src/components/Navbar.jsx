@@ -4,7 +4,7 @@ import { FiChevronDown, FiSearch, FiBell, FiShoppingCart, FiUser } from 'react-i
 const Navbar = () => {
   return (
     <header className="border-b border-gray-200 font-sans">
-      <div className="max-w-full py-5 flex items-center gap-x-6 lg:gap-x-10">
+      <div className="max-w-full mx-20 px-4 sm:px-6 lg:px-8 py-5 flex items-center gap-x-6 lg:gap-x-10">
         
         {/* Left side: Logo & Links */}
         <div className="flex items-center space-x-10">

@@ -14,23 +14,20 @@ const NewArrivals = () => {
 
   // Map the redux data to match the format expected by the Product component
   const displayedProducts = allProducts.slice(0, visibleCount).map(p => ({
-    id: p.id,
+    ...p,
     name: p.title,
-    rating: p.rating,
-    price: p.price,
     imageUrl: p.images?.[0] || "",
-   
   }));
 
   return (
-    <section className="py-12 md:py-16 font-sans">
+    <section className="py-12 md:py-16 font-sans mx-20">
       <div className="max-w-full">
         <h2 className="text-[32px] md:text-[48px] font-black text-center uppercase mb-8 md:mb-14 tracking-wider text-black">
           New Arrivals
         </h2>
         
-        {/* Grid: 4 per row on lg, 3 per row on md, 2 on sm */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
+        {/* Grid: 5 per row on lg, 4 per row on md, 3 on sm, 2 on xs */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6 lg:gap-8">
           {displayedProducts.map(product => (
             <Product key={product.id} product={product} />
           ))}
