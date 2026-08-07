@@ -15,7 +15,7 @@ const Login = () => {
             <div className="flex-1 flex justify-center items-center p-4 sm:p-6 lg:p-8">
                 
                 {/* Fixed height container to prevent layout shifting and ensure flip absolute children have space */}
-                <div className="max-w-5xl w-full bg-white rounded-[2rem] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] overflow-hidden flex h-[620px]">
+                <div className="max-w-5xl w-full bg-white rounded-[2rem] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] overflow-hidden flex h-[720px]">
 
                     {/* Left: Flip Container (Forms) */}
                     <div className="w-full md:w-1/2 h-full p-8 sm:p-12 lg:p-14 [perspective:1500px]">
@@ -26,8 +26,8 @@ const Login = () => {
                             {/* ====================================================
                                 FRONT: SIGN IN FORM
                                 ==================================================== */}
-                            <div className="absolute inset-0 w-full h-full flex flex-col justify-center [backface-visibility:hidden]">
-                                
+                            <div className="absolute inset-0 w-full h-full flex flex-col overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] [backface-visibility:hidden]">
+                                <div className="my-auto py-8">
                                 <div className="text-center md:text-left mb-8">
                                     <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight mb-2">Welcome back</h2>
                                     <p className="text-gray-500 font-medium">Please enter your details to sign in.</p>
@@ -81,14 +81,15 @@ const Login = () => {
                                         Create one now
                                     </button>
                                 </p>
+                                </div>
                             </div>
 
 
                             {/* ====================================================
                                 BACK: SIGN UP FORM
                                 ==================================================== */}
-                            <div className="absolute inset-0 w-full h-full flex flex-col justify-center [backface-visibility:hidden] [transform:rotateY(180deg)]">
-                                
+                            <div className="absolute inset-0 w-full h-full flex flex-col overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                                <div className="my-auto py-8">
                                 <div className="text-center md:text-left mb-6">
                                     <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight mb-2">Join us today</h2>
                                     <p className="text-gray-500 font-medium">Create an account to start shopping.</p>
@@ -114,6 +115,24 @@ const Login = () => {
                                     </div>
 
                                     <div>
+                                        <label className="block text-sm font-bold text-gray-700 mb-1.5 ml-1">Phone Number</label>
+                                        <input
+                                            type="tel"
+                                            placeholder="Enter your phone number"
+                                            className="w-full px-5 py-3.5 rounded-2xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-black focus:border-black outline-none transition-all placeholder:text-gray-400 font-medium"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-sm font-bold text-gray-700 mb-1.5 ml-1">Date of Birth</label>
+                                        <input
+                                            type="date"
+                                            className="w-full px-5 py-3.5 rounded-2xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-black focus:border-black outline-none transition-all placeholder:text-gray-400 font-medium"
+                                        />
+                                    </div>
+                
+
+                                    <div>
                                         <label className="block text-sm font-bold text-gray-700 mb-1.5 ml-1">Password</label>
                                         <input
                                             type="password"
@@ -121,6 +140,16 @@ const Login = () => {
                                             className="w-full px-5 py-3.5 rounded-2xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-black focus:border-black outline-none transition-all placeholder:text-gray-400 font-medium"
                                         />
                                     </div>
+
+                                     <div>
+                                        <label className="block text-sm font-bold text-gray-700 mb-1.5 ml-1">Confirm Password</label>
+                                        <input
+                                            type="password"
+                                            placeholder="Confirm your password"
+                                            className="w-full px-5 py-3.5 rounded-2xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-black focus:border-black outline-none transition-all placeholder:text-gray-400 font-medium"
+                                        />
+                                    </div>
+                                    
 
                                     <button className="w-full bg-black text-white font-bold py-4 rounded-2xl hover:bg-gray-800 hover:shadow-lg hover:-translate-y-0.5 transition-all active:translate-y-0 mt-4">
                                         Create Account
@@ -143,6 +172,7 @@ const Login = () => {
                                         Sign In
                                     </button>
                                 </p>
+                                </div>
                             </div>
 
                         </div>

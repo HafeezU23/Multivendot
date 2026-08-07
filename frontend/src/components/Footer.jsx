@@ -18,7 +18,7 @@ const Footer = () => {
       {/* Top Newsletter Card (Floating Overlap using relative positioning & negative offset) */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -translate-y-1/2 mb-0">
         <div className="bg-black text-white rounded-[20px] px-5 sm:px-10 py-7 md:py-9 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl w-full box-border">
-          <h2 className="text-xl sm:text-3xl lg:text-[38px] font-black uppercase tracking-tight leading-tight max-w-xl text-center md:text-left break-words w-full md:w-auto">
+          <h2 className="text-xl sm:text-3xl lg:text-[38px] font-black uppercase tracking-tight leading-tight max-w-xl text-center md:text-left wrap-break-word w-full md:w-auto">
             STAY UPTO DATE ABOUT OUR LATEST OFFERS
           </h2>
 
@@ -32,7 +32,7 @@ const Footer = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email address"
                 required
-                className="w-full min-w-0 bg-transparent border-none outline-none pl-3 text-xs sm:text-sm text-gray-900 placeholder-gray-400 font-normal"
+                className="w-full min-w-0 bg-transparent border-none outline-none pl-3 text-xs sm:text-sm text-gray-900 font-normal"
               />
             </div>
 

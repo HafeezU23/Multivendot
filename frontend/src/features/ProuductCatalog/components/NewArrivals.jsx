@@ -4,12 +4,12 @@ import { selectAllProducts } from '../../../redux/productSlice';
 import Product from './Product';
 
 const NewArrivals = () => {
-  const [visibleCount, setVisibleCount] = useState(20);
+  const [visibleCount, setVisibleCount] = useState(5);
   
   const allProducts = useSelector(selectAllProducts);
 
   const handleShowMore = () => {
-    setVisibleCount(prev => prev + 20);
+    setVisibleCount(prev => prev + 5);
   };
 
   // Map the redux data to match the format expected by the Product component

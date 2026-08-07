@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { FiChevronDown, FiSearch, FiBell, FiShoppingCart, FiUser, FiMenu, FiX } from 'react-icons/fi'
-
+import { useNavigate } from 'react-router'
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <header className="border-b border-gray-200 font-sans relative">
@@ -73,7 +74,8 @@ const Navbar = () => {
           </button>
           
           {/* User Icon */}
-          <button className="hover:text-gray-600 transition-colors cursor-pointer hover:bg-gray-100 rounded-full p-2">
+          <button className="hover:text-gray-600 transition-colors cursor-pointer hover:bg-gray-100 rounded-full p-2"
+          onClick={() => navigate("/login")}>
             <FiUser className="h-5 w-5 sm:h-6 sm:w-6" />
           </button>
         </div>
