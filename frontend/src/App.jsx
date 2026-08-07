@@ -1,8 +1,9 @@
 import React from 'react'
+import Footer from './components/Footer'
 import Navbar from './components/Navbar'
 import HeroSection from './components/HeroSection'
+import Category from './components/Category'
 import NewArrivals from './features/ProuductCatalog/components/NewArrivals'
-import Footer from './components/Footer'
 
 const App = () => {
   return (
@@ -10,9 +11,11 @@ const App = () => {
       <Navbar />
       <HeroSection />
       <NewArrivals />
+      <Category />
       <Footer />
+
     </div>
   )
 }
 
-export default App
+export default App;
