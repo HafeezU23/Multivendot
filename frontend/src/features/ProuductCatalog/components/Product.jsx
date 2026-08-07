@@ -31,7 +31,7 @@ const Product = ({ product }) => {
     <div className="flex flex-col cursor-pointer bg-white rounded-2xl overflow-hidden border border-black transition-all duration-300">
       
       {/* Top Image Section */}
-      <div className="relative aspect-[4/3] sm:aspect-[5/4] w-full border-b border-black overflow-hidden bg-gray-50 group-hover:bg-gray-100 transition-colors duration-300">
+      <div className="relative aspect-4/3 sm:aspect-5/4 w-full border-b border-black overflow-hidden bg-gray-50 group-hover:bg-gray-100 transition-colors duration-300">
         {/* Product Image */}
         {product.imageUrl ? (
           <img 
