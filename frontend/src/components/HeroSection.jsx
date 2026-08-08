@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
+import { useNavigate } from 'react-router'
 
 const slides = [
   {
@@ -8,6 +9,7 @@ const slides = [
     subtitle: 'Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.',
     buttonText: 'Shop Now',
     badge: 'Fashion & Apparel',
+    filterCategory: 'Fashion & Apparel',
     image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1200&auto=format&fit=crop',
     stats: [
       { number: '200+', label: 'International Brands' },
@@ -21,6 +23,7 @@ const slides = [
     subtitle: 'Explore cutting-edge flagship smartphones and smart accessories engineered for top performance, stunning cameras, and sleek everyday elegance.',
     buttonText: 'Explore Tech',
     badge: 'Smartphones & Gadgets',
+    filterCategory: 'Electronics',
     image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1200&auto=format&fit=crop',
     stats: [
       { number: '150+', label: 'Top Tech Brands' },
@@ -34,6 +37,7 @@ const slides = [
     subtitle: 'Track your health, stay connected, and elevate your personal style with state-of-the-art luxury smartwatches and fitness wearables.',
     buttonText: 'Shop Wearables',
     badge: 'Smartwatches & Fitness',
+    filterCategory: 'Electronics',
     image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200&auto=format&fit=crop',
     stats: [
       { number: '80+', label: 'Premium Watchmakers' },
@@ -47,6 +51,7 @@ const slides = [
     subtitle: 'Savor farm-fresh organic fruits, fresh vegetables, and artisanal essentials delivered straight to your doorstep with guaranteed freshness.',
     buttonText: 'Order Fresh',
     badge: 'Fresh & Organic',
+    filterCategory: 'Home & Kitchen',
     image: 'https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1200&auto=format&fit=crop',
     stats: [
       { number: '500+', label: 'Local Organic Farms' },
@@ -66,6 +71,7 @@ const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
   const timerRef = useRef(null)
+  const navigate = useNavigate();
 
   // Auto-slide every 3 seconds (3000ms)
   useEffect(() => {
@@ -145,7 +151,10 @@ const HeroSection = () => {
 
                   {/* CTA Button */}
                   <div className="mb-8 sm:mb-12">
-                    <button className="w-full sm:w-auto bg-black hover:bg-gray-800 text-white font-medium text-sm sm:text-base px-10 py-3.5 sm:py-4 rounded-full transition-all duration-300 shadow-md hover:shadow-xl active:scale-[0.98] cursor-pointer">
+                    <button 
+                      onClick={() => navigate(`/category?category=${encodeURIComponent(slide.filterCategory)}`)}
+                      className="w-full sm:w-auto bg-black hover:bg-gray-800 text-white font-medium text-sm sm:text-base px-10 py-3.5 sm:py-4 rounded-full transition-all duration-300 shadow-md hover:shadow-xl active:scale-[0.98] cursor-pointer"
+                    >
                       {slide.buttonText}
                     </button>
                   </div>
@@ -169,7 +178,7 @@ const HeroSection = () => {
                 <div className="lg:col-span-5 relative flex justify-center lg:justify-end items-center">
 
                   {/* Product Image Box */}
-                  <div className="relative lg:me-10 w-full max-w-[340px] sm:max-w-[420px] lg:max-w-[600px] aspect-[4/3] sm:aspect-[4/3.5] rounded-3xl overflow-hidden shadow-2xl bg-white/60 p-2 sm:p-3 border border-white/80 backdrop-blur-xs">
+                  <div className="relative lg:me-10 w-full max-w-[340px] sm:max-w-[420px] lg:max-w-[600px] aspect-4/3 sm:aspect-4/3.5 rounded-3xl overflow-hidden shadow-2xl bg-white/60 p-2 sm:p-3 border border-white/80 backdrop-blur-xs">
                     <img
                       src={slide.image}
                       alt={slide.title}

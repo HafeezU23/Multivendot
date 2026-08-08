@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router'
 import { FaTwitter, FaFacebookF, FaInstagram, FaGithub, FaApple } from 'react-icons/fa'
 import { FiMail } from 'react-icons/fi'
 
@@ -14,10 +15,10 @@ const Footer = () => {
   }
 
   return (
-    <footer className="w-full relative bg-[#F0F0F0] text-black font-sans mt-24 sm:mt-28 md:mt-32 overflow-x-clip">
+    <footer className="w-full relative bg-[#F0F0F0] text-black font-sans mt-32 sm:mt-40 md:mt-48 overflow-x-clip">
       {/* Top Newsletter Card (Floating Overlap using relative positioning & negative offset) */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -translate-y-1/2 mb-0">
-        <div className="bg-black text-white rounded-[20px] px-5 sm:px-10 py-7 md:py-9 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl w-full box-border">
+        <div className="bg-black text-white rounded-[20px] px-5 sm:px-10 py-7 md:py-9 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl w-full box-border relative z-10">
           <h2 className="text-xl sm:text-3xl lg:text-[38px] font-black uppercase tracking-tight leading-tight max-w-xl text-center md:text-left wrap-break-word w-full md:w-auto">
             STAY UPTO DATE ABOUT OUR LATEST OFFERS
           </h2>
@@ -48,8 +49,8 @@ const Footer = () => {
       </div>
 
       {/* Main Footer Content Container */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-8 md:-mt-10 pb-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12 pb-10 border-b border-black/10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 sm:-mt-20 md:-mt-18 pb-8 relative z-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 pb-10 border-b border-black/10">
           
           {/* Column 1: Brand Info & Socials */}
           <div className="sm:col-span-2 lg:col-span-1 pr-0 lg:pr-4">
@@ -107,10 +108,10 @@ const Footer = () => {
               COMPANY
             </h4>
             <ul className="flex flex-col gap-3 text-xs sm:text-sm text-gray-600 font-normal">
-              <li><a href="#about" className="hover:text-black transition-colors">About</a></li>
-              <li><a href="#features" className="hover:text-black transition-colors">Features</a></li>
-              <li><a href="#works" className="hover:text-black transition-colors">Works</a></li>
-              <li><a href="#career" className="hover:text-black transition-colors">Career</a></li>
+              <li><Link to="/about" className="hover:text-black transition-colors">About</Link></li>
+              <li><Link to="/features" className="hover:text-black transition-colors">Features</Link></li>
+              <li><Link to="/works" className="hover:text-black transition-colors">Works</Link></li>
+              <li><Link to="/career" className="hover:text-black transition-colors">Career</Link></li>
             </ul>
           </div>
 
@@ -120,10 +121,10 @@ const Footer = () => {
               HELP
             </h4>
             <ul className="flex flex-col gap-3 text-xs sm:text-sm text-gray-600 font-normal">
-              <li><a href="#support" className="hover:text-black transition-colors">Customer Support</a></li>
-              <li><a href="#delivery" className="hover:text-black transition-colors">Delivery Details</a></li>
-              <li><a href="#terms" className="hover:text-black transition-colors">Terms & Conditions</a></li>
-              <li><a href="#privacy" className="hover:text-black transition-colors">Privacy Policy</a></li>
+              <li><Link to="/support" className="hover:text-black transition-colors">Customer Support</Link></li>
+              <li><Link to="/delivery" className="hover:text-black transition-colors">Delivery Details</Link></li>
+              <li><Link to="/terms" className="hover:text-black transition-colors">Terms & Conditions</Link></li>
+              <li><Link to="/privacy" className="hover:text-black transition-colors">Privacy Policy</Link></li>
             </ul>
           </div>
 
@@ -133,23 +134,10 @@ const Footer = () => {
               FAQ
             </h4>
             <ul className="flex flex-col gap-3 text-xs sm:text-sm text-gray-600 font-normal">
-              <li><a href="#account" className="hover:text-black transition-colors">Account</a></li>
-              <li><a href="#manage-deliveries" className="hover:text-black transition-colors">Manage Deliveries</a></li>
-              <li><a href="#orders" className="hover:text-black transition-colors">Orders</a></li>
-              <li><a href="#payments" className="hover:text-black transition-colors">Payments</a></li>
-            </ul>
-          </div>
-
-          {/* Column 5: RESOURCES */}
-          <div>
-            <h4 className="text-xs sm:text-sm font-semibold tracking-[0.15em] text-black uppercase mb-4 sm:mb-5">
-              RESOURCES
-            </h4>
-            <ul className="flex flex-col gap-3 text-xs sm:text-sm text-gray-600 font-normal">
-              <li><a href="#ebooks" className="hover:text-black transition-colors">Free eBooks</a></li>
-              <li><a href="#tutorial" className="hover:text-black transition-colors">Development Tutorial</a></li>
-              <li><a href="#blog" className="hover:text-black transition-colors">How to - Blog</a></li>
-              <li><a href="#youtube" className="hover:text-black transition-colors">Youtube Playlist</a></li>
+              <li><Link to="/account" className="hover:text-black transition-colors">Account</Link></li>
+              <li><Link to="/manage-deliveries" className="hover:text-black transition-colors">Manage Deliveries</Link></li>
+              <li><Link to="/orders" className="hover:text-black transition-colors">Orders</Link></li>
+              <li><Link to="/payments" className="hover:text-black transition-colors">Payments</Link></li>
             </ul>
           </div>
 

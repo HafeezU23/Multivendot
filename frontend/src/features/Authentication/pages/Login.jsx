@@ -15,18 +15,18 @@ const Login = () => {
             <div className="flex-1 flex justify-center items-center p-4 sm:p-6 lg:p-8">
                 
                 {/* Fixed height container to prevent layout shifting and ensure flip absolute children have space */}
-                <div className="max-w-5xl w-full bg-white rounded-[2rem] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] overflow-hidden flex h-[720px]">
+                <div className="max-w-5xl w-full bg-white rounded-4xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] overflow-hidden flex h-[720px]">
 
                     {/* Left: Flip Container (Forms) */}
-                    <div className="w-full md:w-1/2 h-full p-8 sm:p-12 lg:p-14 [perspective:1500px]">
+                    <div className="w-full md:w-1/2 h-full p-8 sm:p-12 lg:p-14 perspective-[1500px]">
                         <div
-                            className={`relative w-full h-full transition-transform duration-[800ms] [transform-style:preserve-3d] ${isFlipped ? '[transform:rotateY(180deg)]' : ''}`}
+                            className={`relative w-full h-full transition-transform duration-800 transform-3d ${isFlipped ? 'transform-[rotateY(180deg)]' : ''}`}
                         >
 
                             {/* ====================================================
                                 FRONT: SIGN IN FORM
                                 ==================================================== */}
-                            <div className="absolute inset-0 w-full h-full flex flex-col overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] [backface-visibility:hidden]">
+                            <div className="absolute inset-0 w-full h-full flex flex-col overflow-y-auto  [-ms-overflow-style:none] scrollbar-none backface-hidden">
                                 <div className="my-auto py-8">
                                 <div className="text-center md:text-left mb-8">
                                     <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight mb-2">Welcome back</h2>
@@ -39,7 +39,7 @@ const Login = () => {
                                         <input
                                             type="email"
                                             placeholder="Enter your email"
-                                            className="w-full px-5 py-3.5 rounded-2xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-black focus:border-black outline-none transition-all placeholder:text-gray-400 font-medium"
+                                            className="w-full px-5 py-3.5 rounded-2xl border border-gray-200 focus:bg-white focus:ring-2 focus:ring-black outline-none transition-all placeholder:text-gray-400 font-medium"
                                         />
                                     </div>
 
@@ -48,7 +48,7 @@ const Login = () => {
                                         <input
                                             type="password"
                                             placeholder="••••••••"
-                                            className="w-full px-5 py-3.5 rounded-2xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-black focus:border-black outline-none transition-all placeholder:text-gray-400 font-medium"
+                                            className="w-full px-5 py-3.5 rounded-2xl border border-gray-200 focus:bg-white focus:ring-2 focus:ring-black outline-none transition-all placeholder:text-gray-400 font-medium"
                                         />
                                     </div>
 
@@ -88,7 +88,7 @@ const Login = () => {
                             {/* ====================================================
                                 BACK: SIGN UP FORM
                                 ==================================================== */}
-                            <div className="absolute inset-0 w-full h-full flex flex-col overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                            <div className="absolute inset-0 w-full h-full flex flex-col overflow-y-auto [-ms-overflow-style:none] scrollbar-none backface-hidden transform-[rotateY(180deg)]">
                                 <div className="my-auto py-8">
                                 <div className="text-center md:text-left mb-6">
                                     <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight mb-2">Join us today</h2>
@@ -101,7 +101,7 @@ const Login = () => {
                                         <input
                                             type="text"
                                             placeholder="John Doe"
-                                            className="w-full px-5 py-3.5 rounded-2xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-black focus:border-black outline-none transition-all placeholder:text-gray-400 font-medium"
+                                            className="w-full px-5 py-3.5 rounded-2xl border border-gray-200 focus:bg-white focus:ring-2 focus:ring-black outline-none transition-all placeholder:text-gray-400 font-medium"
                                         />
                                     </div>
 
@@ -110,7 +110,7 @@ const Login = () => {
                                         <input
                                             type="email"
                                             placeholder="Enter your email"
-                                            className="w-full px-5 py-3.5 rounded-2xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-black focus:border-black outline-none transition-all placeholder:text-gray-400 font-medium"
+                                            className="w-full px-5 py-3.5 rounded-2xl border bg-gray-50  focus:ring-2 focus:ring-black focus:border-black outline-none transition-all placeholder:text-gray-400 font-medium"
                                         />
                                     </div>
 
@@ -119,7 +119,7 @@ const Login = () => {
                                         <input
                                             type="tel"
                                             placeholder="Enter your phone number"
-                                            className="w-full px-5 py-3.5 rounded-2xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-black focus:border-black outline-none transition-all placeholder:text-gray-400 font-medium"
+                                            className="w-full px-5 py-3.5 rounded-2xl border border-gray-200 focus:bg-white focus:ring-2 focus:ring-black outline-none transition-all placeholder:text-gray-400 font-medium"
                                         />
                                     </div>
 
@@ -127,7 +127,7 @@ const Login = () => {
                                         <label className="block text-sm font-bold text-gray-700 mb-1.5 ml-1">Date of Birth</label>
                                         <input
                                             type="date"
-                                            className="w-full px-5 py-3.5 rounded-2xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-black focus:border-black outline-none transition-all placeholder:text-gray-400 font-medium"
+                                            className="w-full px-5 py-3.5 rounded-2xl border border-gray-200 focus:bg-white focus:ring-2 focus:ring-black outline-none transition-all placeholder:text-gray-400 font-medium"
                                         />
                                     </div>
                 
@@ -137,7 +137,7 @@ const Login = () => {
                                         <input
                                             type="password"
                                             placeholder="Create a password"
-                                            className="w-full px-5 py-3.5 rounded-2xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-black focus:border-black outline-none transition-all placeholder:text-gray-400 font-medium"
+                                            className="w-full px-5 py-3.5 rounded-2xl border border-gray-200 focus:bg-white focus:ring-2 focus:ring-black outline-none transition-all placeholder:text-gray-400 font-medium"
                                         />
                                     </div>
 
@@ -146,7 +146,7 @@ const Login = () => {
                                         <input
                                             type="password"
                                             placeholder="Confirm your password"
-                                            className="w-full px-5 py-3.5 rounded-2xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-black focus:border-black outline-none transition-all placeholder:text-gray-400 font-medium"
+                                            className="w-full px-5 py-3.5 rounded-2xl border border-gray-200 focus:bg-white focus:ring-2 focus:ring-black outline-none transition-all placeholder:text-gray-400 font-medium"
                                         />
                                     </div>
                                     
@@ -181,7 +181,7 @@ const Login = () => {
                     {/* Right: Image Section */}
                     <div className="hidden md:block w-1/2 h-full relative bg-gray-100 overflow-hidden">
                         {/* Gradient overlay for a premium look */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10"></div>
+                        <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent z-10"></div>
                         
                         <img
                             // A vibrant, premium retail store aesthetic showing clothes and lifestyle products

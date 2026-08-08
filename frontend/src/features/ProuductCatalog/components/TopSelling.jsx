@@ -4,37 +4,38 @@ import { selectAllProducts } from '../../../redux/productSlice';
 import Product from './Product';
 import { useNavigate } from 'react-router';
 
-const NewArrivals = () => {
+const TopSelling = () => {
   const navigate = useNavigate();
   const allProducts = useSelector(selectAllProducts);
 
   const handleShowMore = () => {
-    navigate('/category?filter=new-arrivals');
+    navigate('/category?filter=top-selling');
   };
 
-  // We don't have dateAdded in our dummyProducts. Let's just reverse the array
-  const newestProducts = [...allProducts]
-    .reverse()
+  // Sort by reviewCount as proxy for top selling since we have it
+  const topSellingProducts = [...allProducts]
+    .sort((a, b) => (b.reviewCount || 0) - (a.reviewCount || 0))
     .slice(0, 5);
 
-  const displayedProducts = newestProducts.map(p => ({
+  const displayedProducts = topSellingProducts.map(p => ({
     ...p,
     name: p.title,
     imageUrl: p.images?.[0] || "",
-    badge: "New Arrival"
+    badge: "Top Selling"
   }));
 
   return (
     <section className="py-12 md:py-16 font-sans mx-4 md:mx-10 lg:mx-20 overflow-hidden">
       <div className="max-w-full">
         <h2 className="text-[28px] md:text-[40px] font-black text-center uppercase mb-8 md:mb-10 tracking-wider text-black">
-          New Arrivals
+          Top Selling
         </h2>
         
-        <div className="flex overflow-x-auto lg:grid lg:grid-cols-5 gap-4 md:gap-6 pb-6 snap-x snap-mandatory [-ms-overflow-style:none] scrollbar-none">
+        {/* Horizontal scroll on mobile/tablet, Grid on lg */}
+        <div className="flex overflow-x-auto lg:grid lg:grid-cols-5 gap-4 md:gap-6 pb-6 snap-x snap-mandatory  [-ms-overflow-style:none] scrollbar-none">
           {displayedProducts.map(product => (
             <div key={product.id} className="w-[80vw] sm:w-[45vw] md:w-[35vw] lg:w-auto shrink-0 snap-center lg:snap-align-none">
-              <Product product={product} />
+              <Product product={product} onClick={() => navigate(`/product/${product.id}`)} />
             </div>
           ))}
         </div>
@@ -48,10 +49,8 @@ const NewArrivals = () => {
           </button>
         </div>
       </div>
-      
-      <div className="mt-12 md:mt-16 border-b border-gray-200 max-w-full mx-auto" />
     </section>
   );
 };
 
-export default NewArrivals;
+export default TopSelling;

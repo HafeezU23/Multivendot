@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const Category = () => {
   return (
@@ -10,8 +11,8 @@ const Category = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
           {/* Electronics - 1/3 width on desktop */}
-          <a 
-            href="#" 
+          <Link 
+            to="/category?category=Electronics"
             className="group relative h-[250px] md:h-[289px] rounded-3xl overflow-hidden bg-white col-span-1 block"
           >
             <span className="absolute top-6 left-6 md:left-8 z-10 text-xl md:text-2xl font-bold text-black bg-white/80 backdrop-blur-md px-5 py-2 rounded-xl shadow-sm">
@@ -22,11 +23,11 @@ const Category = () => {
               alt="Electronics" 
               className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
             />
-          </a>
+          </Link>
           
           {/* Fashion - 2/3 width on desktop */}
-          <a 
-            href="#" 
+          <Link 
+            to="/category?category=Fashion & Apparel"
             className="group relative h-[250px] md:h-[289px] rounded-3xl overflow-hidden bg-white col-span-1 md:col-span-2 block"
           >
             <span className="absolute top-6 left-6 md:left-8 z-10 text-xl md:text-2xl font-bold text-black bg-white/80 backdrop-blur-md px-5 py-2 rounded-xl shadow-sm">
@@ -37,11 +38,11 @@ const Category = () => {
               alt="Fashion & Apparel" 
               className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
             />
-          </a>
+          </Link>
           
           {/* Home & Kitchen - 2/3 width on desktop */}
-          <a 
-            href="#" 
+          <Link 
+            to="/category?category=Home & Kitchen"
             className="group relative h-[250px] md:h-[289px] rounded-3xl overflow-hidden bg-white col-span-1 md:col-span-2 block"
           >
             <span className="absolute top-6 left-6 md:left-8 z-10 text-xl md:text-2xl font-bold text-black bg-white/80 backdrop-blur-md px-5 py-2 rounded-xl shadow-sm">
@@ -52,11 +53,11 @@ const Category = () => {
               alt="Home & Kitchen" 
               className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
             />
-          </a>
+          </Link>
           
           {/* Health & Beauty - 1/3 width on desktop */}
-          <a 
-            href="#" 
+          <Link 
+            to="/category?category=Health & Beauty"
             className="group relative h-[250px] md:h-[289px] rounded-3xl overflow-hidden bg-white col-span-1 block"
           >
             <span className="absolute top-6 left-6 md:left-8 z-10 text-xl md:text-2xl font-bold text-black bg-white/80 backdrop-blur-md px-5 py-2 rounded-xl shadow-sm">
@@ -67,7 +68,7 @@ const Category = () => {
               alt="Health & Beauty" 
               className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
             />
-          </a>
+          </Link>
         </div>
       </div>
     </section>

@@ -1,9 +1,14 @@
 import React from 'react';
 import { FaStar, FaStarHalfAlt } from 'react-icons/fa';
-import { FiHeart, FiShoppingCart } from 'react-icons/fi';
+import { FiHeart } from 'react-icons/fi';
+import { Link } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleWishlist, selectWishlistItems } from '../../../redux/wishlistSlice';
 
 const Product = ({ product }) => {
-  // Function to render stars based on rating in monochrome
+  const dispatch = useDispatch();
+  const wishlistItems = useSelector(selectWishlistItems);
+  const isWishlisted = wishlistItems.includes(product.id);
   const renderStars = (rating) => {
     const stars = [];
     const fullStars = Math.floor(rating);
@@ -11,83 +16,100 @@ const Product = ({ product }) => {
     
     for (let i = 0; i < 5; i++) {
       if (i < fullStars) {
-        stars.push(<FaStar key={i} className="text-black w-3 h-3 md:w-3.5 md:h-3.5" />);
+        stars.push(<FaStar key={i} className="text-[#e9d014] w-3 h-3" />);
       } else if (i === fullStars && hasHalfStar) {
-        stars.push(<FaStarHalfAlt key={i} className="text-black w-3 h-3 md:w-3.5 md:h-3.5" />);
+        stars.push(<FaStarHalfAlt key={i} className="text-[#e9d014] w-3 h-3" />);
       } else {
-        stars.push(<FaStar key={i} className="text-gray-300 w-3 h-3 md:w-3.5 md:h-3.5" />);
+        stars.push(<FaStar key={i} className="text-gray-300 w-3 h-3" />);
       }
     }
     return stars;
   };
 
   const reviewCount = product.reviewCount || 0; 
+  const rating = product.rating || 4.8;
+  const displayTitle = product.name || product.title;
+  const displayImage = product.imageUrl || (product.images && product.images[0]) || "";
 
-  // Calculate discount if originalPrice exists
-  const discountPercentage = product.originalPrice 
-    ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) 
-    : 0;
   return (
-    <div className="flex flex-col cursor-pointer bg-white rounded-2xl overflow-hidden border border-black transition-all duration-300">
+    <Link to={`/product/${product.id}`} className="flex flex-col cursor-pointer bg-white rounded-[20px] shadow-[0_8px_30px_rgb(0,0,0,0.08)] overflow-hidden transition-all duration-300 w-full h-full max-w-[280px] mx-auto group">
       
       {/* Top Image Section */}
-      <div className="relative aspect-4/3 sm:aspect-5/4 w-full border-b border-black overflow-hidden bg-gray-50 group-hover:bg-gray-100 transition-colors duration-300">
+      <div className="relative aspect-square w-full bg-linear-to-br from-[#A69ECB] to-[#7C73A6] overflow-hidden flex items-center justify-center ">
+      
+        {/* Badge */}
+        {product.badge && (
+          <div className="absolute top-4 left-4 bg-white/90 text-black text-[10px] font-black px-2.5 py-1 rounded-sm uppercase tracking-widest z-10 shadow-sm">
+            {product.badge}
+          </div>
+        )}
+
+        {/* Wishlist Button */}
+        <button 
+          onClick={(e) => {
+            e.preventDefault(); // Prevent navigating to product detail
+            dispatch(toggleWishlist(product.id));
+          }}
+          className="absolute top-4 right-4 bg-white/90 text-black p-2 rounded-full z-10 shadow-sm hover:bg-white hover:scale-110 transition-transform"
+        >
+          <FiHeart className={`w-4 h-4 ${isWishlisted ? 'fill-red-500 text-red-500' : ''}`} />
+        </button>
+
         {/* Product Image */}
-        {product.imageUrl ? (
+        {displayImage ? (
           <img 
-            src={product.imageUrl} 
-            alt={product.name} 
-            className="w-full h-full object-cover mix-blend-multiply hover:scale-105 transition-transform duration-500" 
+            src={displayImage} 
+            alt={displayTitle} 
+            className="w-full h-full object-cover drop-shadow-2xl group-hover:scale-110 transition-transform duration-500" 
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-gray-500 text-sm font-medium">No Image</div>
+          <div className="w-full h-full flex items-center justify-center text-white/70 text-sm font-medium">No Image</div>
         )}
       </div>
       
       {/* Bottom Content Section */}
-      <div className="p-3 sm:p-4 md:p-5 flex flex-col flex-1">
-        {/* Category & Brand */}
-        {(product.category || product.brand) && (
-          <p className="text-gray-500 text-[10px] md:text-xs font-bold uppercase tracking-wider mb-2">
-            {[product.category, product.brand].filter(Boolean).join(' · ')}
-          </p>
-        )}        {/* Title */}
-        <h3 className="text-sm md:text-base font-bold text-black leading-snug mb-3 line-clamp-2">
-          {product.name}
+      <div className="p-5 flex flex-col flex-1 bg-white rounded-t-2xl -mt-4 relative z-20">
+        
+        {/* Title */}
+        <h3 className="text-base font-bold text-[#333333] leading-tight mb-2.5 line-clamp-1">
+          {displayTitle}
         </h3>
-        
-        {/* Rating */}
-        <div className="flex items-center mb-4">
-          <div className="flex space-x-[2px] mr-2">
-            {renderStars(product.rating || 4.8)}
-          </div>
-          <span className="text-black font-bold text-xs md:text-sm mr-1.5">{product.rating || 4.8}</span>
-          <span className="text-gray-500 text-xs md:text-sm">({reviewCount} reviews)</span>
-        </div>
-        
-        {/* Divider */}
-        <div className="border-t border-black mb-4"></div>
-        
-        {/* Price and Cart Row */}
-        <div className="flex items-end justify-between mb-4">
-          <div className="flex flex-col">
-            <div className="flex items-baseline space-x-1.5 sm:space-x-2">
-              <span className="text-xl sm:text-2xl md:text-3xl font-black text-black">${product.price?.toFixed(2) || product.price}</span>
-              {product.originalPrice && (
-                <span className="text-sm font-bold text-gray-400 line-through">
-                  ${product.originalPrice?.toFixed(2) || product.originalPrice}
-                </span>
-              )}
-            </div>
-            {/* Discount Badge */}
-           
-          </div>
 
-  
+        {/* Badges / Category / Brand */}
+        <div className="flex flex-wrap gap-2 mb-3.5">
+          {product.category && (
+            <span className="text-[10px] font-bold text-gray-600 border border-gray-300 rounded px-2 py-0.5 uppercase tracking-wider">
+              {product.category}
+            </span>
+          )}
+          {product.brand && (
+            <span className="text-[10px] font-bold text-gray-600 border border-gray-300 rounded px-2 py-0.5 uppercase tracking-wider">
+              {product.brand}
+            </span>
+          )}
         </div>
         
+        {/* Rating & Reviews */}
+        <div className="flex items-center mb-5 text-sm text-gray-500">
+          <div className="flex space-x-[2px] mr-2">
+            {renderStars(rating)}
+          </div>
+          <span className="font-semibold text-gray-700 mr-1.5 text-[13px]">{rating}</span>
+          <span className="text-xs"><p>({reviewCount})</p></span>
+        </div>
+        
+        {/* Footer */}
+        <div className="mt-auto flex items-end justify-between">
+          <div className="flex flex-col">
+            <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Price</span>
+            <span className="text-xl font-black text-[#333333] leading-none tracking-tight">
+              ${product.price?.toFixed(2) || product.price}
+            </span>
+          </div>
+         
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
