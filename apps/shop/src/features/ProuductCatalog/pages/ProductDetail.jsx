@@ -154,7 +154,7 @@ const ProductDetail = () => {
                     <button 
                       key={color}
                       onClick={() => setSelectedColor(color)}
-                      className="w-10 h-10 rounded-full flex items-center justify-center focus:outline-none transition-transform hover:scale-110 cursor-pointer"
+                      className="w-10 h-10 rounded-full flex items-center justify-center border-2 border-gray-200 focus:outline-none transition-transform hover:scale-110 cursor-pointer"
                       style={{ backgroundColor: COLOR_MAP[color] || color.toLowerCase() }}
                     >
                       {selectedColor === color && (
