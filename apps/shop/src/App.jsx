@@ -13,6 +13,8 @@ import StoresPage from './features/Stores/pages/StoresPage'
 import VendorStorePage from './features/Stores/pages/VendorStorePage'
 import StaticPage from './features/StaticPages/pages/StaticPage'
 
+
+
 const App = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-between overflow-x-hidden">
@@ -28,7 +30,7 @@ const App = () => {
         <Route path="/wishlist" element={<WishlistPage />} />
         <Route path="/stores" element={<StoresPage />} />
         <Route path="/store/:vendorId" element={<VendorStorePage />} />
-        
+
         {/* Static Pages */}
         <Route path="/about" element={<StaticPage />} />
         <Route path="/features" element={<StaticPage />} />
@@ -43,6 +45,7 @@ const App = () => {
         <Route path="/payments" element={<StaticPage />} />
       </Routes>
     </div>
+  
   )
 }
 
