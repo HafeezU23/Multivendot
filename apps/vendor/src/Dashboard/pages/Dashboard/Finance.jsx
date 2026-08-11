@@ -1,7 +1,7 @@
 import PageMeta from "../../components/common/PageMeta";
 import FinanceMetrics from "../../components/finance/FinanceMetrics";
 import PaymentHistory from "../../components/finance/PaymentHistory";
-import DemographicCard from "../../components/ecommerce/DemographicCard";
+
 
 export default function Finance() {
   return (

@@ -24,21 +24,23 @@ const navItems = [{
     path: "/finance",
     pro: false
   }, {
-    name: "Customer Chats",
-    path: "#",
+    name: "Manage Inventory",
+    path: "/store",
     pro: false
   }, {
-    name: "My Store",
-    path: "#",
+    name: "Customer Chats",
+    path: "/chats",
     pro: false
-  }]
+  },
+]
 }];
 const AppSidebar = () => {
   const {
     isExpanded,
     isMobileOpen,
     isHovered,
-    setIsHovered
+    setIsHovered,
+    toggleMobileSidebar
   } = useSidebar();
   const location = useLocation();
   const [openSubmenu, setOpenSubmenu] = useState(null);
@@ -47,6 +49,13 @@ const AppSidebar = () => {
 
   // const isActive = (path: string) => location.pathname === path;
   const isActive = useCallback(path => location.pathname === path, [location.pathname]);
+
+  useEffect(() => {
+    if (isMobileOpen) {
+      toggleMobileSidebar();
+    }
+  }, [location.pathname]);
+
   useEffect(() => {
     let submenuMatched = false;
     ["main"].forEach(menuType => {
