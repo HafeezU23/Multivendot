@@ -22,10 +22,10 @@ import Orders from "./pages/Dashboard/Orders";
 import Delivery from "./pages/Dashboard/Delivery";
 import Finance from "./pages/Dashboard/Finance";
 
-import VendorStore from "../VendorStore";
-import UploadProduct from "../UploadProduct";
-import EditProduct from "../EditProduct";
-import VendorRegistration from "../VendorRegistration";
+import VendorStore from "./pages/Dashboard/VendorStore";
+import UploadProduct from "./pages/Dashboard/UploadProduct";
+import EditProduct from "./pages/Dashboard/EditProduct";
+import CustomerChat from "./pages/Dashboard/CustomerChat";
 
 export default function App() {
   return <>
@@ -42,7 +42,7 @@ export default function App() {
             <Route path="/store" element={<VendorStore />} />
             <Route path="/upload-product" element={<UploadProduct />} />
             <Route path="/edit-product" element={<EditProduct />} />
-            <Route path="/register" element={<VendorRegistration />} />
+            <Route path="/chats" element={<CustomerChat />} />
 
             {/* Others Page */}
             <Route path="/profile" element={<UserProfiles />} />
