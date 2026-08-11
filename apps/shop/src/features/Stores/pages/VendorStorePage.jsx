@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useParams, Link } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAllProducts } from '../../../redux/features/productSlice';
@@ -6,11 +6,12 @@ import { selectFollowedVendors, toggleFollowVendor } from '../../../redux/featur
 import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
 import Product from '../../ProuductCatalog/components/Product';
-import { FiStar, FiUsers, FiCheck } from 'react-icons/fi';
+import { FiStar, FiUsers, FiCheck, FiMessageSquare, FiX, FiSend } from 'react-icons/fi';
 
 const VendorStorePage = () => {
   const { vendorId } = useParams();
   const dispatch = useDispatch();
+  const [isChatOpen, setIsChatOpen] = useState(false);
   
   const allProducts = useSelector(selectAllProducts);
   const followedVendors = useSelector(selectFollowedVendors);
@@ -79,7 +80,13 @@ const VendorStorePage = () => {
             </div>
           </div>
           
-          <div className="mt-4 md:mt-0 md:ml-auto">
+          <div className="mt-4 md:mt-0 md:ml-auto flex items-center gap-3">
+            <button 
+              onClick={() => setIsChatOpen(true)}
+              className="px-6 py-3.5 rounded-full font-bold text-lg flex items-center gap-2 transition-all shadow-sm cursor-pointer bg-white border border-gray-200 text-gray-800 hover:bg-gray-50"
+            >
+              <FiMessageSquare className="w-5 h-5" /> Chat
+            </button>
             <button 
               onClick={() => dispatch(toggleFollowVendor(vendorId))}
               className={`px-8 py-3.5 rounded-full font-bold text-lg flex items-center gap-2 transition-all shadow-sm cursor-pointer ${
@@ -112,6 +119,36 @@ const VendorStorePage = () => {
       </main>
       
       <Footer />
+      
+      {/* Floating Chat Window */}
+      {isChatOpen && (
+        <div className="fixed bottom-4 right-4 w-80 sm:w-96 bg-white rounded-2xl shadow-2xl border border-gray-200 z-50 flex flex-col overflow-hidden">
+          {/* Chat Header */}
+          <div className="bg-black text-white p-4 flex justify-between items-center">
+            <div className="font-bold flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-green-500"></div>
+              {vendorInfo.storeName}
+            </div>
+            <button onClick={() => setIsChatOpen(false)} className="text-gray-300 hover:text-white cursor-pointer transition-colors">
+              <FiX className="w-5 h-5" />
+            </button>
+          </div>
+          {/* Chat Messages Area */}
+          <div className="h-72 p-4 overflow-y-auto bg-gray-50 flex flex-col gap-3">
+            <div className="text-center text-xs text-gray-400 my-2">Today</div>
+            <div className="self-start bg-gray-200 text-black px-4 py-2 rounded-2xl rounded-tl-sm text-sm max-w-[80%]">
+              Hi there! Thanks for visiting our store. How can we help you today?
+            </div>
+          </div>
+          {/* Chat Input */}
+          <div className="p-3 border-t border-gray-200 bg-white flex items-center gap-2">
+            <input type="text" placeholder="Type a message..." className="flex-1 bg-gray-100 rounded-full px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-black/5" />
+            <button className="bg-black text-white p-2.5 rounded-full cursor-pointer hover:bg-gray-800 transition-colors">
+              <FiSend className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

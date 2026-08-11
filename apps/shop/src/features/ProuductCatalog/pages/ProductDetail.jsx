@@ -6,6 +6,7 @@ import { addToCart, selectCartItems } from '../../../redux/features/cartSlice';
 import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
 import Product from '../components/Product';
+import { FiMessageSquare, FiX, FiSend } from 'react-icons/fi';
 
 const COLOR_MAP = {
   Red: '#ef4444', Blue: '#3b82f6', Green: '#22c55e', Yellow: '#eab308',
@@ -31,6 +32,7 @@ const ProductDetail = () => {
   const [selectedSize, setSelectedSize] = useState('');
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState('reviews');
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   // Compute cartItemId based on current selections
   const cartItemId = product ? `${product.id}-${selectedColor || 'none'}-${selectedSize || 'none'}` : null;
@@ -122,6 +124,22 @@ const ProductDetail = () => {
           {/* Right: Product Info & Configurator */}
           <div className="flex flex-col lg:w-1/2">
             <h1 className="text-3xl sm:text-4xl font-black uppercase mb-3 leading-tight">{product.title}</h1>
+            
+            {/* Uploaded By */}
+            {product.vendor && (
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-gray-500 font-medium">
+                  Uploaded by <Link to={`/store/${product.vendor.vendorId}`} className="text-black font-bold hover:underline">{product.vendor.storeName}</Link>
+                </span>
+                <button 
+                  onClick={() => setIsChatOpen(true)}
+                  className="bg-gray-100 p-2 rounded-full hover:bg-gray-200 transition-colors cursor-pointer text-gray-700"
+                  title="Chat with Store"
+                >
+                  <FiMessageSquare className="w-4 h-4" />
+                </button>
+              </div>
+            )}
             
             {/* Rating */}
             <div className="flex items-center gap-2 mb-4">
@@ -337,6 +355,36 @@ const ProductDetail = () => {
       </main>
       
       <Footer />
+      
+      {/* Floating Chat Window */}
+      {isChatOpen && product.vendor && (
+        <div className="fixed bottom-4 right-4 w-80 sm:w-96 bg-white rounded-2xl shadow-2xl border border-gray-200 z-50 flex flex-col overflow-hidden">
+          {/* Chat Header */}
+          <div className="bg-black text-white p-4 flex justify-between items-center">
+            <div className="font-bold flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-green-500"></div>
+              {product.vendor.storeName}
+            </div>
+            <button onClick={() => setIsChatOpen(false)} className="text-gray-300 hover:text-white cursor-pointer transition-colors">
+              <FiX className="w-5 h-5" />
+            </button>
+          </div>
+          {/* Chat Messages Area */}
+          <div className="h-72 p-4 overflow-y-auto bg-gray-50 flex flex-col gap-3">
+            <div className="text-center text-xs text-gray-400 my-2">Today</div>
+            <div className="self-start bg-gray-200 text-black px-4 py-2 rounded-2xl rounded-tl-sm text-sm max-w-[80%]">
+              Hi there! Let us know if you have any questions about the <b>{product.title}</b>.
+            </div>
+          </div>
+          {/* Chat Input */}
+          <div className="p-3 border-t border-gray-200 bg-white flex items-center gap-2">
+            <input type="text" placeholder="Type a message..." className="flex-1 bg-gray-100 rounded-full px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-black/5" />
+            <button className="bg-black text-white p-2.5 rounded-full cursor-pointer hover:bg-gray-800 transition-colors">
+              <FiSend className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
