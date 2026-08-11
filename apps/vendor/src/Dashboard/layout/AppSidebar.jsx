@@ -1,12 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router";
 
-// Assume these icons are imported from an icon library
-import { BoxCubeIcon, CalenderIcon, ChevronDownIcon, GridIcon, HorizontaLDots, ListIcon, PageIcon, PieChartIcon, PlugInIcon, TableIcon, UserCircleIcon } from "../icons";
+import { Box, Calendar, ChevronDown, LayoutGrid, MoreHorizontal, List, FileText, PieChart, Plug, Table, UserCircle } from "lucide-react";
 import { useSidebar } from "../context/SidebarContext";
 
 const navItems = [{
-  icon: <GridIcon />,
+  icon: <LayoutGrid />,
   name: "Dashboard",
   subItems: [{
     name: "Analytics",
@@ -99,7 +98,7 @@ const AppSidebar = () => {
           {nav.icon}
         </span>
         {(isExpanded || isHovered || isMobileOpen) && <span className="menu-item-text">{nav.name}</span>}
-        {(isExpanded || isHovered || isMobileOpen) && <ChevronDownIcon className={`ml-auto w-5 h-5 transition-transform duration-200 ${openSubmenu?.type === menuType && openSubmenu?.index === index ? "rotate-180 text-brand-500" : ""}`} />}
+        {(isExpanded || isHovered || isMobileOpen) && <ChevronDown className={`ml-auto w-5 h-5 transition-transform duration-200 ${openSubmenu?.type === menuType && openSubmenu?.index === index ? "rotate-180 text-brand-500" : ""}`} />}
       </button> : nav.path && <Link to={nav.path} className={`menu-item group ${isActive(nav.path) ? "menu-item-active" : "menu-item-inactive"}`}>
         <span className={`menu-item-icon-size ${isActive(nav.path) ? "menu-item-icon-active" : "menu-item-icon-inactive"}`}>
           {nav.icon}
@@ -148,7 +147,7 @@ const AppSidebar = () => {
         <div className="flex flex-col gap-4">
           <div>
             <h2 className={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 ${!isExpanded && !isHovered ? "lg:justify-center" : "justify-start"}`}>
-              {isExpanded || isHovered || isMobileOpen ? "Menu" : <HorizontaLDots className="size-6" />}
+              {isExpanded || isHovered || isMobileOpen ? "Menu" : <MoreHorizontal className="size-6" />}
             </h2>
             {renderMenuItems(navItems, "main")}
           </div>

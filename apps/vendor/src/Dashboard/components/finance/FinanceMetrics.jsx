@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowDownIcon, ArrowUpIcon } from "../../icons";
+import { ArrowDown, ArrowUp } from "lucide-react";
 import Badge from "../ui/badge/Badge";
 
 // Helper icons for finance
@@ -39,7 +39,7 @@ export default function FinanceMetrics() {
             </h4>
           </div>
           <Badge color="success">
-            <ArrowUpIcon />
+            <ArrowUp />
             18.45%
           </Badge>
         </div>
@@ -63,7 +63,7 @@ export default function FinanceMetrics() {
           </div>
 
           <Badge color="error">
-            <ArrowDownIcon />
+            <ArrowDown />
             2.15%
           </Badge>
         </div>
