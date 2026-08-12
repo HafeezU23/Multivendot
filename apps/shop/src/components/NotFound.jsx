@@ -50,10 +50,7 @@ const NotFound = () => {
         >
           <div className="notfound__face notfound__face--front">404</div>
           <div className="notfound__face notfound__face--back">404</div>
-          <div className="notfound__face notfound__face--left" />
-          <div className="notfound__face notfound__face--right" />
-          <div className="notfound__face notfound__face--top" />
-          <div className="notfound__face notfound__face--bottom" />
+         
         </div>
       </div>
 
