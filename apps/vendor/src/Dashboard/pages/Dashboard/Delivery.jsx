@@ -6,7 +6,7 @@ import DeliveryComplain from "../../components/delivery/DeliveryComplain";
 export default function Delivery() {
   return (
     <>
-      <PageMeta title="Vendor DashBoard - Logistics & Delivery" description="Manage logistics and deliveries" />
+      <PageMeta title="Vendor Dashboard - Logistics" description="Manage logistics and deliveries" />
       <div className="grid grid-cols-12 gap-4 md:gap-6">
         
         {/* Top Full-Width Section */}

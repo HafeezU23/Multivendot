@@ -6,7 +6,7 @@ import PaymentHistory from "../../components/finance/PaymentHistory";
 export default function Finance() {
   return (
     <>
-      <PageMeta title="Vendor DashBoard - Finance" description="Manage your earnings and payments" />
+      <PageMeta title="Vendor Dashboard - Finance" description="Manage your earnings and payments" />
       <div className="grid grid-cols-12 gap-4 md:gap-6">
         
         {/* Top Left: Finance Metrics */}
