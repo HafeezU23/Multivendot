@@ -28,6 +28,7 @@ import VendorStore from "./pages/Dashboard/VendorStore";
 import UploadProduct from "./pages/Dashboard/UploadProduct";
 import EditProduct from "./pages/Dashboard/EditProduct";
 import CustomerChat from "./pages/Dashboard/CustomerChat";
+import ProductDetail from "./pages/Dashboard/ProductDetail";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -58,6 +59,7 @@ export default function App() {
             <Route path="/store" element={<VendorStore />} />
             <Route path="/upload-product" element={<UploadProduct />} />
             <Route path="/edit-product" element={<EditProduct />} />
+            <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/chats" element={<CustomerChat />} />
 
             {/* Others Page */}
