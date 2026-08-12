@@ -11,42 +11,47 @@
 // Table Component
 const Table = ({
   children,
-  className
+  className,
+  ...props
 }) => {
-  return <table className={`min-w-full  ${className}`}>{children}</table>;
+  return <table className={`min-w-full  ${className}`} {...props}>{children}</table>;
 };
 
 // TableHeader Component
 const TableHeader = ({
   children,
-  className
+  className,
+  ...props
 }) => {
-  return <thead className={className}>{children}</thead>;
+  return <thead className={className} {...props}>{children}</thead>;
 };
 
 // TableBody Component
 const TableBody = ({
   children,
-  className
+  className,
+  ...props
 }) => {
-  return <tbody className={className}>{children}</tbody>;
+  return <tbody className={className} {...props}>{children}</tbody>;
 };
 
 // TableRow Component
 const TableRow = ({
   children,
-  className
+  className,
+  ...props
 }) => {
-  return <tr className={className}>{children}</tr>;
+  return <tr className={className} {...props}>{children}</tr>;
 };
 
 // TableCell Component
 const TableCell = ({
   children,
   isHeader = false,
-  className
+  className,
+  ...props
 }) => {
   const CellTag = isHeader ? "th" : "td";
-  return <CellTag className={` ${className}`}>{children}</CellTag>;
+  return <CellTag className={` ${className}`} {...props}>{children}</CellTag>;
 };
 export { Table, TableHeader, TableBody, TableRow, TableCell };

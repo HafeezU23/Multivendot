@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "../ui/table";
 import Badge from "../ui/badge/Badge";
 import { Modal } from "../ui/modal";
@@ -12,9 +13,13 @@ const tableData = [
 ];
 
 export default function StockHandler() {
+    const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [newStock, setNewStock] = useState("");
+    const [searchTerm, setSearchTerm] = useState("");
+
+    const filteredData = tableData.filter(product => product.name.toLowerCase().includes(searchTerm.toLowerCase()));
 
     const openModal = (product) => {
         setSelectedProduct(product);
@@ -41,6 +46,20 @@ export default function StockHandler() {
                         Stock Handler
                     </h3>
                 </div>
+                <div className="relative w-full sm:w-auto mt-2 sm:mt-0 group">
+                    <input 
+                        type="text" 
+                        placeholder="Product Title" 
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="w-full sm:w-72 pl-11 pr-4 py-2.5 text-sm bg-white/50 backdrop-blur-md border border-gray-200/80 rounded-[27px] shadow-sm transition-all duration-300 focus:outline-none focus:bg-white focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 hover:border-brand-300 hover:shadow-md dark:bg-gray-800/50 dark:border-gray-700 dark:text-white dark:focus:bg-gray-800 dark:hover:border-brand-600"
+                    />
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <svg className="w-4 h-4 text-gray-400 group-hover:text-brand-500 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                </div>
             </div>
             
             <div className="max-w-full overflow-x-auto overflow-y-auto max-h-[400px] scroll-smooth pr-2 custom-scrollbar">
@@ -64,9 +83,16 @@ export default function StockHandler() {
                         </TableHeader>
 
                         {/* Table Body */}
-                        <TableBody className="divide-y divide-gray-100 dark:divide-gray-800">
-                            {tableData.map(product => (
-                                <TableRow key={product.id} className="">
+                        <TableBody className="divide-y divide-gray-100 dark:divide-gray-800 transition-all duration-300 ease-in-out">
+                            {filteredData.length === 0 ? (
+                                <TableRow className="transition-all duration-300 ease-in-out">
+                                    <TableCell colSpan={3} className="py-16 text-center text-gray-500 dark:text-gray-400 font-medium">
+                                        No Result Found
+                                    </TableCell>
+                                </TableRow>
+                            ) : (
+                                filteredData.map(product => (
+                                    <TableRow key={product.id} onClick={() => navigate(`/product/${product.id}`)} className="transition-all duration-300 ease-in-out cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50">
                                     <TableCell className="py-3">
                                         <div className="flex items-center gap-3">
                                             <div className="h-[50px] w-[50px] overflow-hidden rounded-md border border-gray-100 dark:border-gray-800">
@@ -86,22 +112,28 @@ export default function StockHandler() {
                                     </TableCell>
                                     <TableCell className="py-3 text-gray-500 text-theme-sm dark:text-gray-400">
                                         <button 
-                                            onClick={() => openModal(product)}
+                                            onClick={(e) => { e.stopPropagation(); openModal(product); }}
                                             className="rounded-lg border border-brand-500/20 bg-brand-50 px-3 py-1.5 text-xs font-medium text-brand-500 hover:bg-brand-100 dark:border-brand-500/20 dark:bg-brand-500/10 dark:text-brand-500 dark:hover:bg-brand-500/20 transition-colors"
                                         >
                                             Update Stock
                                         </button>
                                     </TableCell>
                                 </TableRow>
-                            ))}
+                                ))
+                            )}
                         </TableBody>
                     </Table>
                 </div>
 
                 {/* Mobile List View */}
-                <div className="block sm:hidden flex-col gap-4">
-                    {tableData.map((product, index) => (
-                        <div key={product.id} className={`flex flex-col py-4 gap-4 ${index !== tableData.length - 1 ? 'border-b border-gray-100 dark:border-gray-800' : ''}`}>
+                <div className="block sm:hidden flex-col gap-4 min-h-[200px] transition-all duration-300 ease-in-out">
+                    {filteredData.length === 0 ? (
+                        <div className="flex items-center justify-center h-32 text-gray-500 dark:text-gray-400 font-medium transition-all duration-300 ease-in-out">
+                            No Result Found
+                        </div>
+                    ) : (
+                        filteredData.map((product, index) => (
+                            <div key={product.id} onClick={() => navigate(`/product/${product.id}`)} className={`flex flex-col py-4 gap-4 ${index !== filteredData.length - 1 ? 'border-b border-gray-100 dark:border-gray-800' : ''} transition-all duration-300 ease-in-out cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50 rounded-lg px-2`}>
                             <div className="flex items-center justify-between gap-3">
                                 <div className="flex items-center gap-3 min-w-0">
                                     <div className="h-[50px] w-[50px] overflow-hidden rounded-md border border-gray-100 dark:border-gray-800 flex-shrink-0">
@@ -120,7 +152,7 @@ export default function StockHandler() {
                                 </div>
                                 <div className="flex-shrink-0">
                                     <button 
-                                        onClick={() => openModal(product)}
+                                        onClick={(e) => { e.stopPropagation(); openModal(product); }}
                                         className="rounded-lg border border-brand-500/20 bg-brand-50 px-3 py-1.5 text-xs font-medium text-brand-500 hover:bg-brand-100 dark:border-brand-500/20 dark:bg-brand-500/10 dark:text-brand-500 dark:hover:bg-brand-500/20 transition-colors"
                                     >
                                         Update
@@ -128,7 +160,7 @@ export default function StockHandler() {
                                 </div>
                             </div>
                         </div>
-                    ))}
+                    )))}
                 </div>
 
             </div>

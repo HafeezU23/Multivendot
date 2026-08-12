@@ -54,7 +54,12 @@ export default function DeliveryTrack() {
 
         {/* Interactive Progress Bar */}
         <div className="relative mb-10 pt-4 px-2">
-          <div className="absolute left-2 right-2 top-6 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full">
+          {/* Track background */}
+          <div 
+            className="absolute top-6 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full"
+            style={{ left: '10%', right: '10%' }}
+          >
+            {/* Active progress */}
             <div 
               className="absolute left-0 top-0 h-full bg-blue-500 dark:bg-blue-400 rounded-full transition-all duration-500 ease-in-out"
               style={{ width: `${((currentStage - 1) / (stages.length - 1)) * 100}%` }}
