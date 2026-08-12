@@ -14,6 +14,7 @@ import VendorStorePage from './features/Stores/pages/VendorStorePage'
 import StaticPage from './features/StaticPages/pages/StaticPage'
 import AiChatBubble from './components/AiChatBubble'
 import LoadingScreen from './components/LoadingScreen'
+import NotFound from './components/NotFound'
 
 
 
@@ -58,6 +59,9 @@ const App = () => {
           <Route path="/account" element={<StaticPage />} />
           <Route path="/manage-deliveries" element={<StaticPage />} />
           <Route path="/payments" element={<StaticPage />} />
+
+          {/* 404 Catch-all */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
 
         {/* AI Chat Assistant — floating bubble on every page */}

@@ -1,0 +1,379 @@
+/* =============================================
+   404 Not Found — White BG, Black 3D Elements
+   ============================================= */
+
+.notfound {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  background: #fff;
+  overflow: hidden;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+
+/* ---------- Particles ---------- */
+.notfound__particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.notfound__particle {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.08));
+  opacity: var(--opacity);
+  animation: nf-particle-drift var(--duration) ease-in-out var(--delay) infinite alternate;
+  filter: blur(1px);
+}
+
+@keyframes nf-particle-drift {
+  0%   { transform: translateY(0) translateX(0) scale(1); }
+  100% { transform: translateY(-30px) translateX(15px) scale(0.5); }
+}
+
+/* ---------- Orbiting Rings ---------- */
+.notfound__orbit {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  pointer-events: none;
+}
+
+.notfound__orbit--1 {
+  width: 480px;
+  height: 480px;
+  border-color: rgba(0, 0, 0, 0.025);
+  border-top-color: rgba(0, 0, 0, 0.1);
+  animation: nf-orbit 10s linear infinite;
+}
+
+.notfound__orbit--2 {
+  width: 640px;
+  height: 640px;
+  border-color: rgba(0, 0, 0, 0.015);
+  border-right-color: rgba(0, 0, 0, 0.07);
+  animation: nf-orbit 14s linear infinite reverse;
+}
+
+@keyframes nf-orbit {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ---------- 3D "404" Block ---------- */
+.notfound__scene {
+  perspective: 800px;
+  perspective-origin: 50% 50%;
+}
+
+.notfound__block {
+  width: 280px;
+  height: 120px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease-out;
+  animation: nf-idle-float 4s ease-in-out infinite;
+}
+
+@keyframes nf-idle-float {
+  0%, 100% { translate: 0 0; }
+  50%      { translate: 0 -12px; }
+}
+
+.notfound__face {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: visible;
+}
+
+/* Front face */
+.notfound__face--front {
+  width: 280px;
+  height: 120px;
+  background: #fff;
+  border: 2px solid rgba(0, 0, 0, 0.12);
+  border-radius: 20px;
+  font-size: 72px;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: #000;
+  transform: translateZ(20px);
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.03);
+}
+
+/* Back face */
+.notfound__face--back {
+  width: 280px;
+  height: 120px;
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 20px;
+  font-size: 72px;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: rgba(0, 0, 0, 0.1);
+  transform: rotateY(180deg) translateZ(20px);
+}
+
+/* Side faces — thin depth */
+.notfound__face--left {
+  width: 40px;
+  height: 120px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.08));
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  transform: rotateY(-90deg) translateZ(0px);
+  left: -20px;
+}
+
+.notfound__face--right {
+  width: 40px;
+  height: 120px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.1));
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  transform: rotateY(90deg) translateZ(240px);
+  right: -20px;
+}
+
+.notfound__face--top {
+  width: 280px;
+  height: 40px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.05));
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+  transform: rotateX(90deg) translateZ(0px);
+  top: -20px;
+}
+
+.notfound__face--bottom {
+  width: 280px;
+  height: 40px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.1));
+  border-left: 1px solid rgba(0, 0, 0, 0.06);
+  border-right: 1px solid rgba(0, 0, 0, 0.06);
+  transform: rotateX(-90deg) translateZ(80px);
+  bottom: -20px;
+}
+
+/* Shadow under the block */
+.notfound__block::after {
+  content: '';
+  position: absolute;
+  bottom: -40px;
+  left: 10%;
+  width: 80%;
+  height: 20px;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translateZ(-30px);
+  animation: nf-shadow-pulse 4s ease-in-out infinite;
+}
+
+@keyframes nf-shadow-pulse {
+  0%, 100% { opacity: 0.7; transform: translateZ(-30px) scaleX(1); }
+  50%      { opacity: 0.4; transform: translateZ(-30px) scaleX(0.85); }
+}
+
+/* ---------- Content ---------- */
+.notfound__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  z-index: 2;
+  margin-top: 12px;
+}
+
+.notfound__title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #000;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.notfound__desc {
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgba(0, 0, 0, 0.45);
+  text-align: center;
+  margin: 0;
+  max-width: 360px;
+}
+
+/* Buttons */
+.notfound__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.notfound__btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: 12px;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  border: none;
+}
+
+.notfound__btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.notfound__btn--primary {
+  background: #000;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.notfound__btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+}
+
+.notfound__btn--secondary {
+  background: rgba(0, 0, 0, 0.05);
+  color: #000;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.notfound__btn--secondary:hover {
+  background: rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+/* ---------- Scattered Vendor Icons ---------- */
+.notfound__scattered {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.notfound__item {
+  position: absolute;
+  color: rgba(0, 0, 0, 0.08);
+  display: flex;
+}
+
+.notfound__item svg {
+  width: 100%;
+  height: 100%;
+}
+
+.notfound__item--1 {
+  width: 48px;
+  height: 48px;
+  top: 12%;
+  left: 8%;
+  animation: nf-float-item 5s ease-in-out 0s infinite alternate;
+  transform: rotate(-15deg);
+}
+
+.notfound__item--2 {
+  width: 40px;
+  height: 40px;
+  top: 18%;
+  right: 10%;
+  animation: nf-float-item 6s ease-in-out 1s infinite alternate;
+  transform: rotate(12deg);
+}
+
+.notfound__item--3 {
+  width: 36px;
+  height: 36px;
+  bottom: 20%;
+  left: 12%;
+  animation: nf-float-item 5.5s ease-in-out 0.5s infinite alternate;
+  transform: rotate(20deg);
+}
+
+.notfound__item--4 {
+  width: 44px;
+  height: 44px;
+  bottom: 15%;
+  right: 8%;
+  animation: nf-float-item 7s ease-in-out 1.5s infinite alternate;
+  transform: rotate(-8deg);
+}
+
+@keyframes nf-float-item {
+  0%   { translate: 0 0; opacity: 0.08; }
+  100% { translate: 0 -18px; opacity: 0.15; }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 480px) {
+  .notfound__block {
+    width: 200px;
+    height: 90px;
+  }
+
+  .notfound__face--front,
+  .notfound__face--back {
+    width: 200px;
+    height: 90px;
+    font-size: 52px;
+  }
+
+  .notfound__face--left,
+  .notfound__face--right {
+    height: 90px;
+  }
+
+  .notfound__face--top,
+  .notfound__face--bottom {
+    width: 200px;
+  }
+
+  .notfound__face--right {
+    transform: rotateY(90deg) translateZ(160px);
+  }
+
+  .notfound__face--bottom {
+    transform: rotateX(-90deg) translateZ(50px);
+  }
+
+  .notfound__title {
+    font-size: 20px;
+  }
+
+  .notfound__desc {
+    font-size: 13px;
+    max-width: 280px;
+  }
+
+  .notfound__actions {
+    flex-direction: column;
+  }
+
+  .notfound__orbit--1 { width: 300px; height: 300px; }
+  .notfound__orbit--2 { width: 400px; height: 400px; }
+
+  .notfound__item--1,
+  .notfound__item--2,
+  .notfound__item--3,
+  .notfound__item--4 {
+    display: none;
+  }
+}

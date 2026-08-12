@@ -1,5 +1,5 @@
 /* =============================================
-   3D Loading Screen — Black & White Theme
+   3D Loading Screen — White BG, Black Elements
    ============================================= */
 
 .loading-screen {
@@ -11,7 +11,7 @@
   align-items: center;
   justify-content: center;
   gap: 40px;
-  background: #000;
+  background: #fff;
   overflow: hidden;
   transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
               transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
@@ -37,7 +37,7 @@
   width: var(--size);
   height: var(--size);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.15));
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1));
   opacity: var(--opacity);
   animation: particle-drift var(--duration) ease-in-out var(--delay) infinite alternate;
   filter: blur(1px);
@@ -75,27 +75,27 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1.5px solid rgba(0, 0, 0, 0.12);
   border-radius: 16px;
   backdrop-filter: blur(6px);
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.06) 0%,
-    rgba(255, 255, 255, 0.02) 100%
+    rgba(0, 0, 0, 0.03) 0%,
+    rgba(0, 0, 0, 0.06) 100%
   );
   box-shadow:
-    inset 0 0 30px rgba(255, 255, 255, 0.03),
-    0 0 20px rgba(255, 255, 255, 0.05);
+    inset 0 0 30px rgba(0, 0, 0, 0.02),
+    0 4px 20px rgba(0, 0, 0, 0.06);
 }
 
 .loading-screen__face-icon {
   width: 36px;
   height: 36px;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
-  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.25));
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.15));
 }
 
 .loading-screen__face-icon svg {
@@ -133,14 +133,13 @@
   font-size: 42px;
   font-weight: 900;
   letter-spacing: -0.03em;
-  color: #fff;
   margin: 0;
   background: linear-gradient(
     135deg,
-    #fff 0%,
-    rgba(255, 255, 255, 0.5) 40%,
-    #fff 60%,
-    rgba(255, 255, 255, 0.5) 100%
+    #000 0%,
+    rgba(0, 0, 0, 0.45) 40%,
+    #000 60%,
+    rgba(0, 0, 0, 0.45) 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
@@ -150,7 +149,7 @@
 }
 
 .loading-screen__brand-dot {
-  background: #fff;
+  background: #000;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -169,7 +168,7 @@
   font-family: 'Inter', system-ui, sans-serif;
   font-size: 12px;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(0, 0, 0, 0.35);
   letter-spacing: 0.18em;
   text-transform: uppercase;
   margin: 0;
@@ -177,8 +176,8 @@
 }
 
 @keyframes tagline-pulse {
-  0%, 100% { opacity: 0.4; }
-  50%      { opacity: 0.9; }
+  0%, 100% { opacity: 0.35; }
+  50%      { opacity: 0.8; }
 }
 
 /* Progress bar */
@@ -186,7 +185,7 @@
   width: 220px;
   height: 2px;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.06);
   position: relative;
   overflow: visible;
   margin-top: 4px;
@@ -195,10 +194,10 @@
 .loading-screen__progress-fill {
   height: 100%;
   border-radius: 10px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.3), #fff);
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.2), #000);
   transition: width 0.15s ease-out;
   position: relative;
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 }
 
 .loading-screen__progress-glow {
@@ -208,10 +207,10 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #fff;
+  background: #000;
   box-shadow:
-    0 0 14px rgba(255, 255, 255, 0.8),
-    0 0 36px rgba(255, 255, 255, 0.3);
+    0 0 12px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(0, 0, 0, 0.15);
   transition: left 0.15s ease-out;
 }
 
@@ -219,7 +218,7 @@
   font-family: 'Inter', system-ui, sans-serif;
   font-size: 12px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(0, 0, 0, 0.3);
   letter-spacing: 0.06em;
   margin-top: 2px;
   font-variant-numeric: tabular-nums;
@@ -236,24 +235,24 @@
 .loading-screen__orbit--1 {
   width: 300px;
   height: 300px;
-  border-color: rgba(255, 255, 255, 0.04);
-  border-top-color: rgba(255, 255, 255, 0.18);
+  border-color: rgba(0, 0, 0, 0.03);
+  border-top-color: rgba(0, 0, 0, 0.14);
   animation: orbit-spin 8s linear infinite;
 }
 
 .loading-screen__orbit--2 {
   width: 420px;
   height: 420px;
-  border-color: rgba(255, 255, 255, 0.025);
-  border-right-color: rgba(255, 255, 255, 0.12);
+  border-color: rgba(0, 0, 0, 0.02);
+  border-right-color: rgba(0, 0, 0, 0.1);
   animation: orbit-spin 12s linear infinite reverse;
 }
 
 .loading-screen__orbit--3 {
   width: 540px;
   height: 540px;
-  border-color: rgba(255, 255, 255, 0.015);
-  border-bottom-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(0, 0, 0, 0.01);
+  border-bottom-color: rgba(0, 0, 0, 0.06);
   animation: orbit-spin 16s linear infinite;
 }
 
