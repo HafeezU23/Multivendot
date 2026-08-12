@@ -12,6 +12,7 @@ import WishlistPage from './features/Wishlist/pages/WishlistPage'
 import StoresPage from './features/Stores/pages/StoresPage'
 import VendorStorePage from './features/Stores/pages/VendorStorePage'
 import StaticPage from './features/StaticPages/pages/StaticPage'
+import AiChatBubble from './components/AiChatBubble'
 
 
 
@@ -44,6 +45,9 @@ const App = () => {
         <Route path="/manage-deliveries" element={<StaticPage />} />
         <Route path="/payments" element={<StaticPage />} />
       </Routes>
+
+      {/* AI Chat Assistant — floating bubble on every page */}
+      <AiChatBubble />
     </div>
   
   )
