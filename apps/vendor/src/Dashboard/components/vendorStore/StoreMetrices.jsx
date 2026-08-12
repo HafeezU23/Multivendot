@@ -1,4 +1,4 @@
-import { BoxCubeIcon, TimeIcon } from "../../icons";
+import { Box as BoxCubeIcon, Clock as TimeIcon } from "lucide-react";
 
 export default function StoreMetrices() {
   return <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6">

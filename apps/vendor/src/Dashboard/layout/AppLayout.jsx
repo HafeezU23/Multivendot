@@ -1,14 +1,19 @@
 import { SidebarProvider, useSidebar } from "../context/SidebarContext";
-import { Outlet } from "react-router";
+import { Outlet, useLocation } from "react-router";
 import AppHeader from "./AppHeader";
 import Backdrop from "./Backdrop";
 import AppSidebar from "./AppSidebar";
+import AiChatBubble from "../../../../shop/src/components/AiChatBubble";
+
 const LayoutContent = () => {
   const {
     isExpanded,
     isHovered,
     isMobileOpen
   } = useSidebar();
+  const location = useLocation();
+  const showAiChat = location.pathname !== "/chats";
+
   return <div className="min-h-screen xl:flex">
       <div>
         <AppSidebar />
@@ -20,11 +25,14 @@ const LayoutContent = () => {
           <Outlet />
         </div>
       </div>
+      {showAiChat && <AiChatBubble />}
     </div>;
 };
+
 const AppLayout = () => {
   return <SidebarProvider>
       <LayoutContent />
     </SidebarProvider>;
 };
+
 export default AppLayout;

@@ -10,7 +10,7 @@ export default function UploadProduct() {
   
   return (
     <>
-      <PageMeta title="Upload Product" description="Upload Product Page" />
+      <PageMeta title="Vendor Dashboard - Upload Product" description="Upload Product Page" />
       
       {/* Header */}
       <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">

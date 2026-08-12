@@ -55,7 +55,7 @@ export default function CustomerChat() {
 
   return (
     <>
-      <PageMeta title="Customer Chats" description="Chat with your customers" />
+      <PageMeta title="Vendor Dashboard - Customer Chats" description="Chat with your customers" />
       
       <div className="flex flex-col gap-6 h-[calc(100vh-90px)] min-h-[850px]">
         {/* Top Section: Customer Cards */}

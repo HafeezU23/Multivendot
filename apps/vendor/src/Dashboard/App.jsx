@@ -1,7 +1,9 @@
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router";
 import SignIn from "./pages/AuthPages/SignIn";
 import SignUp from "./pages/AuthPages/SignUp";
-import NotFound from "./pages/OtherPage/NotFound";
+import NotFound from "../../../shop/src/components/NotFound";
+import LoadingScreen from "../../../shop/src/components/LoadingScreen";
 import UserProfiles from "./pages/UserProfiles";
 import Videos from "./pages/UiElements/Videos";
 import Images from "./pages/UiElements/Images";
@@ -28,6 +30,20 @@ import EditProduct from "./pages/Dashboard/EditProduct";
 import CustomerChat from "./pages/Dashboard/CustomerChat";
 
 export default function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate initial app loading / API fetching
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1200); // adjust duration as needed
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <LoadingScreen />;
+  }
+
   return <>
       <Router>
         <ScrollToTop />

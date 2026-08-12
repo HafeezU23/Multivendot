@@ -8,7 +8,7 @@ import OrderReviews from "../../components/orders/OrderReviews";
 export default function Orders() {
   return (
     <>
-      <PageMeta title="Vendor DashBoard" description="This is Vendor DashBoard Page" />
+      <PageMeta title="Vendor Dashboard - Orders" description="This is Vendor DashBoard Page" />
       <div className="grid grid-cols-12 gap-4 md:gap-6">
         
         {/* Left Column (Desktop) / Main Column (Mobile) */}

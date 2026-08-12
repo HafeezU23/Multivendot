@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router";
-import { PencilIcon, TrashBinIcon, PlusIcon } from "../../icons";
+import { Pencil as PencilIcon, Trash2 as TrashBinIcon, Plus as PlusIcon } from "lucide-react";
 
 const allProducts = [
   { id: 1, name: "Wireless Headphones", category: "Electronics", price: "$49.99", stock: 120, image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&q=80" },

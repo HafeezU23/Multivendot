@@ -8,7 +8,7 @@ import StockHandler from "../../components/vendorStore/StockHandler";
 import TopProducts from "../../components/ecommerce/TopProducts";
 export default function Home() {
   return <>
-    <PageMeta title="Vendor DashBoard" description="This is Vendor DashBoard Page" />
+    <PageMeta title="Vendor Dashboard - Manage Inventory" description="This is Vendor DashBoard Page" />
     <div className="grid grid-cols-12 gap-4 md:gap-6">
       <div className="col-span-12 space-y-6 xl:col-span-7">
         <StoreMetrices />
