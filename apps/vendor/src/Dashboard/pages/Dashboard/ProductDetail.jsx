@@ -38,7 +38,7 @@ export default function ProductDetail() {
   const [activeImage, setActiveImage] = useState(product.images[0]);
 
   return (
-    <div className="w-full max-w-[1400px] mx-auto min-h-screen pb-16 bg-white dark:bg-gray-950 font-sans">
+    <div className="w-full max-w-[1400px] mx-auto min-h-screen pb-16 px-3 pt-4 bg-white dark:bg-gray-950 font-sans">
       
       {/* Header Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 mb-8 border-b border-gray-100 dark:border-gray-800">
