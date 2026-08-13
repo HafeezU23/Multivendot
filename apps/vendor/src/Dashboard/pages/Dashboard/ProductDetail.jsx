@@ -38,10 +38,10 @@ export default function ProductDetail() {
   const [activeImage, setActiveImage] = useState(product.images[0]);
 
   return (
-    <div className="w-full max-w-[1400px] mx-auto min-h-screen pb-16 bg-white dark:bg-gray-950 font-sans">
+    <div className="w-full max-w-[1400px] mx-auto min-h-[calc(100vh-100px)] lg:h-[calc(100vh-140px)] lg:overflow-hidden flex flex-col pb-6 lg:pb-0 font-sans">
       
       {/* Header Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 mb-8 border-b border-gray-100 dark:border-gray-800">
+      <div className="flex-shrink-0 flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 mb-6 lg:mb-8 border-b border-gray-100 dark:border-gray-800">
          <div className="flex items-center gap-4">
            <Link 
              to="/store" 
@@ -63,15 +63,15 @@ export default function ProductDetail() {
          </Link>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-16 items-start">
+      <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-16 min-h-0">
         
         {/* Left Column: Image Gallery & Features (Col span 7) */}
-        <div className="lg:col-span-7 flex flex-col gap-10">
+        <div className="lg:col-span-7 flex flex-col gap-6 lg:gap-10 lg:h-full lg:min-h-0">
           
-          <div className="flex flex-col-reverse sm:flex-row gap-4 sm:gap-6 h-auto sm:h-[600px]">
+          <div className="flex flex-col-reverse sm:flex-row gap-4 sm:gap-6 h-auto sm:h-[600px] lg:h-auto lg:flex-1 lg:min-h-0">
              {/* Vertical Thumbnails */}
              <div className="flex sm:flex-col gap-4 overflow-x-auto sm:overflow-y-auto custom-scrollbar hide-scrollbar py-1">
-               {product.images.map((img, idx) => (
+               {product.images.slice(0, 4).map((img, idx) => (
                  <button 
                    key={idx} 
                    onClick={() => setActiveImage(img)}
@@ -84,14 +84,10 @@ export default function ProductDetail() {
                    <img src={img} alt={`Thumbnail ${idx}`} className="w-full h-full object-cover rounded-xl" />
                  </button>
                ))}
-               {/* "+2" Placeholder indicator to match the design */}
-               <div className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gray-200 dark:bg-gray-800 flex items-center justify-center opacity-70 cursor-pointer hover:opacity-100 transition-opacity border border-gray-200 dark:border-gray-700">
-                  <span className="font-semibold text-gray-500 dark:text-gray-400 text-sm">+2</span>
-               </div>
              </div>
              
              {/* Main Image View */}
-             <div className="relative flex-1 rounded-3xl overflow-hidden bg-[#F8F9FA] dark:bg-gray-900 border border-gray-100 dark:border-gray-800 flex items-center justify-center group">
+             <div className="relative flex-1 rounded-3xl overflow-hidden bg-[#F8F9FA] dark:bg-gray-900 border border-gray-100 dark:border-gray-800 flex items-center justify-center group min-h-[300px]">
                {/* Expand Icon */}
                <button className="absolute top-4 right-4 p-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-full text-gray-600 dark:text-gray-300 hover:text-brand-500 hover:bg-white transition-colors z-10 shadow-sm">
                   <Maximize2 className="w-5 h-5" />
@@ -100,7 +96,7 @@ export default function ProductDetail() {
                <img 
                  src={activeImage} 
                  alt={product.name}
-                 className="w-[85%] h-[85%] object-contain transition-transform duration-700 ease-out group-hover:scale-105 mix-blend-multiply dark:mix-blend-normal"
+                 className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 mix-blend-multiply dark:mix-blend-normal"
                />
 
                {/* Carousel Dots */}
@@ -114,25 +110,12 @@ export default function ProductDetail() {
                </div>
              </div>
           </div>
-
-          {/* Features Under Image */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-6 border-t border-gray-100 dark:border-gray-800">
-             {product.features.map((feat, idx) => (
-               <div key={idx} className="flex flex-col gap-2">
-                 <div className="w-10 h-10 flex items-center justify-center bg-gray-50 dark:bg-gray-800 rounded-xl mb-1 text-gray-700 dark:text-gray-300">
-                   {feat.icon}
-                 </div>
-                 <h4 className="text-sm font-bold text-gray-900 dark:text-white">{feat.title}</h4>
-                 <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">{feat.desc}</p>
-               </div>
-             ))}
-          </div>
           
         </div>
 
-        {/* Right Column: Product Info (Col span 5, Sticky) */}
-        <div className="lg:col-span-5 lg:sticky lg:top-24 flex flex-col font-sans">
-           
+        {/* Right Column: Product Info (Col span 5, Scrollable on desktop) */}
+        <div className="lg:col-span-5 flex flex-col font-sans lg:h-full lg:min-h-0 lg:overflow-y-auto custom-scrollbar lg:pr-4 pb-8 lg:pb-0">
+          <div className="my-auto flex flex-col pt-4">
            {/* Title Section */}
            <div className="mb-6">
              <h1 className="text-4xl sm:text-5xl font-extrabold text-black dark:text-white tracking-tight mb-2">
@@ -190,33 +173,8 @@ export default function ProductDetail() {
                  {product.description}
                </p>
              </div>
-           </div>
-
-           {/* Trust Badges (Shipping, Returns, Secure) */}
-           <div className="grid grid-cols-3 gap-4 pt-4 border-t border-gray-100 dark:border-gray-800 mt-auto">
-             <div className="flex items-start gap-3">
-                <Truck className="w-5 h-5 text-gray-500 mt-0.5" />
-                <div>
-                  <h5 className="text-xs font-bold text-gray-900 dark:text-white">Free Shipping</h5>
-                  <p className="text-[10px] text-gray-500">On orders over $99</p>
-                </div>
-             </div>
-             <div className="flex items-start gap-3">
-                <RefreshCcw className="w-5 h-5 text-gray-500 mt-0.5" />
-                <div>
-                  <h5 className="text-xs font-bold text-gray-900 dark:text-white">Easy Returns</h5>
-                  <p className="text-[10px] text-gray-500">30-day returns</p>
-                </div>
-             </div>
-             <div className="flex items-start gap-3">
-                <Lock className="w-5 h-5 text-gray-500 mt-0.5" />
-                <div>
-                  <h5 className="text-xs font-bold text-gray-900 dark:text-white">Secure Payment</h5>
-                  <p className="text-[10px] text-gray-500">100% secure checkout</p>
-                </div>
-             </div>
-           </div>
-
+            </div>
+          </div>
         </div>
       </div>
     </div>

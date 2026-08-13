@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router";
 
-import { Box, Calendar, ChevronDown, LayoutGrid, MoreHorizontal, List, FileText, PieChart, Plug, Table, UserCircle } from "lucide-react";
+import { Box, Calendar, ChevronDown, LayoutGrid, MoreHorizontal, List, FileText, PieChart, Plug, Table, UserCircle, ShoppingCart } from "lucide-react";
 import { useSidebar } from "../context/SidebarContext";
 
 const navItems = [{
@@ -143,7 +143,7 @@ const AppSidebar = () => {
         lg:translate-x-0`} onMouseEnter={() => !isExpanded && setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
     <div className={`py-8 flex ${!isExpanded && !isHovered ? "lg:justify-center" : "justify-start"}`}>
       <Link to="/" className="flex items-center gap-3">
-        <img src="/images/logo/logo-icon.svg" alt="Logo" width={32} height={32} />
+        <ShoppingCart className="w-7 h-7 text-blue-600 dark:text-blue-500 flex-shrink-0" />
         {(isExpanded || isHovered || isMobileOpen) && (
           <span className="text-xl font-bold text-gray-800 dark:text-white whitespace-nowrap">
             Vendor DashBoard

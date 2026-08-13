@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { useSidebar } from "../context/SidebarContext";
 import NotificationDropdown from "../components/header/NotificationDropdown";
 import UserDropdown from "../components/header/UserDropdown";
+import { ShoppingCart } from "lucide-react";
 const AppHeader = () => {
   const [isApplicationMenuOpen, setApplicationMenuOpen] = useState(false);
   const {
@@ -46,7 +47,7 @@ const AppHeader = () => {
           </button>
 
           <Link to="/" className="flex items-center gap-2 lg:hidden">
-            <img src="/images/logo/logo-icon.svg" alt="Logo" width={32} height={32} />
+            <ShoppingCart className="w-7 h-7 text-blue-600 dark:text-blue-500 flex-shrink-0" />
             <span className="text-lg font-bold text-gray-800 dark:text-white whitespace-nowrap">
               Vendor DashBoard
             </span>
